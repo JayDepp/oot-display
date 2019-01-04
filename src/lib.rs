@@ -11,7 +11,7 @@ pub struct SaveData {
     pub day_night_modifier: DayNightModifier,
     _02: [u8; 14],
     pub death_counter: u16,
-    pub name: [u8; 10], // TODO: ?
+    pub name: [u8; 10], // TODO: What is the format?
     pub heart_containers: Hearts,
     pub health: Hearts,
     _03: [u8; 1],
@@ -32,6 +32,7 @@ pub struct SaveData {
     // TODO: ...
 }
 
+// TODO: Should these be swapped?
 #[derive(Copy, Clone, Debug)]
 #[repr(u32)]
 pub enum AgeModifier {
@@ -63,12 +64,169 @@ pub struct EquippedItemsID {
 #[derive(Copy, Clone, Debug)]
 #[repr(u8)]
 pub enum ItemID {
+    // Inventory Items
     DekuStick = 0x00,
     DekuNut = 0x01,
     Bomb = 0x02,
-    // ..
+    FairyBow = 0x03,
+    FireArrow = 0x04,
+    DinsFire = 0x05,
+    FairySlingshot = 0x06,
+    FairyOcarina = 0x07,
+    OcarinaOfTime = 0x08,
+    Bombchu10 = 0x09,
+    Hookshot = 0x0A,
+    Longshot = 0x0B,
+    IceArrow = 0x0C,
+    FaroresWind = 0x0D,
+    Boomerang = 0x0E,
+    LensOfTruth = 0x0F,
+    MagicBean = 0x10,
+    MegatonHammer = 0x11,
+    LightArrow = 0x12,
+    NayrusLove = 0x13,
+    EmptyBottle = 0x14,
+    RedPotion = 0x15,
+    GreenPotion = 0x16,
+    BluePotion = 0x17,
+    BottledFairy = 0x18,
+    Fish = 0x19,
+    LonLonMilkAndBottle = 0x1A,
+    RutosLetter = 0x1B,
+    BlueFire = 0x1C,
+    Bug = 0x1D,
+    BigPoe = 0x1E,
+    LonLonMilkHalf = 0x1F,
+    Poe = 0x20,
+    WeirdEgg = 0x21,
+    Chicken = 0x22,
+    ZeldasLetter = 0x23,
+    KeatonMask = 0x24,
+    SkullMask = 0x25,
+    SpookyMask = 0x26,
+    BunnyHood = 0x27,
+    GoronMask = 0x28,
+    ZoraMask = 0x29,
+    GerudoMask = 0x2A,
+    MaskOfTruth = 0x2B,
+    SOLDOUT = 0x2C,
+    PocketEgg = 0x2D,
+    PocketCucco = 0x2E,
+    Cojiro = 0x2F,
+    OddMushroom = 0x30,
+    OddPotion = 0x31,
+    PoachersSaw = 0x32,
+    GoronsSwordBroken = 0x33,
+    Prescription = 0x34,
+    EyeballFrog = 0x35,
+    EyeDrops = 0x36,
+    ClaimCheck = 0x37,
+    FairyBowWithFireArrow = 0x38,
+    FairyBowWithIceArrow = 0x39,
+    FairyBowWithLightArrow = 0x3A,
+    // Equipment
     KokiriSword = 0x3B,
-    // TODO: Fill rest
+    MasterSword = 0x3C,
+    GiantsKnifeOrBiggoronsSword = 0x3D,
+    DekuShield = 0x3E,
+    HylianShield = 0x3F,
+    MirrorShield = 0x40,
+    KokiriTunic = 0x41,
+    GoronTunic = 0x42,
+    ZoraTunic = 0x43,
+    KokiriBoots = 0x44,
+    IronBoots = 0x45,
+    HoverBoots = 0x46,
+    BulletBag30 = 0x47,
+    BulletBag40 = 0x48,
+    BulletBag50 = 0x49,
+    Quiver30 = 0x4A,
+    BigQuiver40 = 0x4B,
+    BiggestQuiver50 = 0x4C,
+    BombBag20 = 0x4D,
+    BigBombBag30 = 0x4E,
+    BiggestBombBag40 = 0x4F,
+    GoronsBracelet = 0x50,
+    SilverGauntlets = 0x51,
+    GoldenGauntlets = 0x52,
+    SilverScale = 0x53,
+    GoldenScale = 0x54,
+    GiantsKnifeBroken = 0x55,
+    AdultsWallet = 0x56,
+    GiantsWallet = 0x57,
+    DekuSeeds5 = 0x58,
+    FishingPole = 0x59,
+    // QuestItems
+    MinuetOfForest = 0x5A,
+    BoleroOfFire = 0x5B,
+    SerenadeOfWater = 0x5C,
+    RequiemOfSpirit = 0x5D,
+    NocturneOfShadow = 0x5E,
+    PreludeOfLight = 0x5F,
+    ZeldasLullaby = 0x60,
+    EponasSong = 0x61,
+    SariasSong = 0x62,
+    SunsSong = 0x63,
+    SongOfTime = 0x64,
+    SongOfStorms = 0x65,
+    ForestMedallion = 0x66,
+    FireMedallion = 0x67,
+    WaterMedallion = 0x68,
+    SpiritMedallion = 0x69,
+    ShadowMedallion = 0x6A,
+    LightMedallion = 0x6B,
+    KokirisEmerald = 0x6C,
+    GoronsRuby = 0x6D,
+    ZorasSapphire = 0x6E,
+    StoneOfAgony = 0x6F,
+    GerudosCard = 0x70,
+    GoldSkulltulaToken = 0x71,
+    HeartContainer = 0x72,
+    PieceOfHeart = 0x73,
+    // Dungeon Items
+    BigKey = 0x74,
+    Compass = 0x75,
+    DungeonMap = 0x76,
+    // Collectibles
+    SmallKey = 0x77,
+    SmallMagicJar = 0x78,
+    LargeMagicJar = 0x79,
+    PieceOFHeart = 0x7A,
+    // Removed Items
+    Removed0 = 0x7B,
+    Removed1 = 0x7C,
+    Removed2 = 0x7D,
+    Removed3 = 0x7E,
+    Removed4 = 0x7F,
+    Removed5 = 0x80,
+    Removed6 = 0x81,
+    // Other Items
+    LonLonMilk = 0x82,
+    RecoveryHeart = 0x83,
+    GreenRupee = 0x84,
+    BlueRupee = 0x85,
+    RedRupee = 0x86,
+    PurpleRupee = 0x87,
+    HugeRupee = 0x88,
+    Removed7 = 0x89,
+    DekuSticks5 = 0x8A,
+    DekuSticks10 = 0x8B,
+    DekuNuts5 = 0x8C,
+    DekuNuts10 = 0x8D,
+    Bombs5 = 0x8E,
+    Bombs10 = 0x8F,
+    Bombs20 = 0x90,
+    Bombs30 = 0x91,
+    Arrows5Or10 = 0x92,
+    Arrows10Or30 = 0x93,
+    Arrows30Or50 = 0x94,
+    DekuSeeds30 = 0x95,
+    Bombchu5 = 0x96,
+    Bombchu20 = 0x97,
+    DekuStickUpgrade20 = 0x98,
+    DekuStickUpgrade30 = 0x99,
+    DekuNutUpgrade30 = 0x9A,
+    DekuNutUpgrade40 = 0x9B,
     NoItem = 0xFF,
 }
 
@@ -118,6 +276,7 @@ bitflags! {
     }
 }
 
+// TODO: This ordering seems wrong.
 #[derive(Copy, Clone, Debug)]
 #[repr(C, packed)]
 pub struct ItemSlotItemIds {
@@ -147,6 +306,7 @@ pub struct ItemSlotItemIds {
     pub child_trade_item: ItemID,
 }
 
+// TODO: This ordering seems wrong.
 #[derive(Copy, Clone, Debug)]
 #[repr(C, packed)]
 pub struct ItemSlotAmount {
